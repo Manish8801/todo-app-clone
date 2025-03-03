@@ -2,16 +2,22 @@ import { BsFillCheckSquareFill } from "react-icons/bs";
 import useDialogsContext from "../../contexts/useDialogsContext";
 import { FormEvent, useState } from "react";
 import "./SelectTagColorInput.css";
-import useTagsContext from "../../contexts/useTagsContext";
 import { v4 as uuidv4 } from "uuid";
+import useMyListsContext from "../../contexts/useMyListsContext";
 const SelectTagColorInput = () => {
   const [value, setValue] = useState<string>("");
-  const { tags, selectTag } = useTagsContext();
+  const { selectedTodo, handlePriorityChange, tags, selectTag } =
+    useMyListsContext();
   const { toggleIsSelectTagColorInputOpen } = useDialogsContext();
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     selectTag(value);
+    if (selectedTodo) {
+      handlePriorityChange(selectedTodo.id, value);
+      setValue("");
+    }
+
     toggleIsSelectTagColorInputOpen();
   };
   return (

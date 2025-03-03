@@ -1,4 +1,4 @@
-import useTagsContext from "../../../../contexts/useTagsContext";
+import useMyListsContext from "../../../../contexts/useMyListsContext";
 
 type TagsItemProps = {
   tagName: string;
@@ -6,7 +6,7 @@ type TagsItemProps = {
 }
 
 const TagsItem = ({ tagName, tagColor } : TagsItemProps) => {
-  const { selectTag} = useTagsContext();
+  const { selectTag} = useMyListsContext();
   const handleButtonClick = () => {
     selectTag(tagName);
   }

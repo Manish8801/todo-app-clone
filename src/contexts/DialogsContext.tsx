@@ -3,6 +3,8 @@ import { createContext, ReactNode, useState } from "react";
 type DialogsContextType = {
   isAddMyListsInpuOpen: boolean;
   isSelectTagColorInputOpen: boolean;
+  isChangeListNameInputOpen: boolean;
+  toggleIsChangeListNameInputOpen: () => void;
   toggleIsSelectTagColorInputOpen: () => void;
   toggleIsAddMyListsInputOpen: () => void;
 };
@@ -13,6 +15,11 @@ const DialogsProvider = ({ children }: { children: ReactNode }) => {
     useState<boolean>(false);
   const [isSelectTagColorInputOpen, setIsSelectTagColorInputOpen] =
     useState<boolean>(false);
+  const [isChangeListNameInputOpen, setIsChangeListNameInputOpen] =
+    useState<boolean>(false);
+  const toggleIsChangeListNameInputOpen = () => {
+    setIsChangeListNameInputOpen(!isChangeListNameInputOpen);
+  };
   const toggleIsSelectTagColorInputOpen = () => {
     setIsSelectTagColorInputOpen(!isSelectTagColorInputOpen);
   };
@@ -22,6 +29,8 @@ const DialogsProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     isAddMyListsInpuOpen,
     isSelectTagColorInputOpen,
+    isChangeListNameInputOpen,
+    toggleIsChangeListNameInputOpen,
     toggleIsSelectTagColorInputOpen,
     toggleIsAddMyListsInputOpen,
   };

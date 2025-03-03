@@ -1,3 +1,4 @@
+import useMyListsContext from "../../../../contexts/useMyListsContext";
 import Count from "../../Count";
 
 type MyListsItemProps = {
@@ -5,9 +6,13 @@ type MyListsItemProps = {
 };
 
 function MyListsItem({ listName }: MyListsItemProps) {
+  const {activateList}  = useMyListsContext()
+  const handleButtonClick = (listName : string) => {
+    activateList(listName)
+  }
   return (
     <li className="w-full min-w-56">
-      <button className="w-full py-2.5 pl-6 text-grey sidebar-button flex-center-start gap-3">
+      <button className="w-full py-2.5 pl-6 text-grey sidebar-button flex-center-start gap-3" onClick={() => handleButtonClick(listName)}>
         <div>{listName}</div>
         <Count count={0} />
       </button>

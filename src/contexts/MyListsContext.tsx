@@ -14,6 +14,10 @@ type MyListsContextType = {
   selectedTodo: TodoType | undefined;
   myLists: string[];
   activeList: string;
+  tags: TagType[];
+  selectedTag: TagType;
+  addTag: (tagName: string, tagColor: string, preference: number) => void;
+  selectTag: (tagName: string) => void;
   addMyLists: (listName: string) => void;
   activateList: (listName: string) => void;
   selectTodo: (id: number) => void;
@@ -29,7 +33,7 @@ type MyListsContextType = {
   handleTaskComplete: (id: number, isCompleted: boolean) => void;
   handleListNameChange: (id: number, listName: string) => void;
 };
-
+type TagType = { tagName: string; tagColor: string; preference: number };
 enum ActionTypeType {
   ADD_TASK = "ADD_TASK",
   DELETE_TASK = "DELETE_TASK",
@@ -148,11 +152,27 @@ const todoReducer = (state: TodoType[], action: ActionType) => {
 const initialMyLists = ["Personal", "Work", "Home", "Grocery"];
 const MyListsContext = createContext<MyListsContextType | null>(null);
 const MyListsProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedTodo, setSelectedTodo] = useState<TodoType | undefined>();
   const [todos, dispatch] = useReducer(todoReducer, []);
+  const [tags, setTags] = useState<TagType[]>([
+    { tagName: "Nothing", tagColor: "#F9D21F", preference: 1 },
+    { tagName: "science project", tagColor: "#2FC24A", preference: 2 },
+    { tagName: "Priority", tagColor: "#5DDB6A", preference: 3 },
+    { tagName: "important", tagColor: "#FFB900", preference: 4 },
+    { tagName: "deadline", tagColor: "#FF7A00", preference: 5 },
+    { tagName: "family", tagColor: "#FF3D56", preference: 6 },
+  ]);
+  const [selectedTodo, setSelectedTodo] = useState<TodoType | undefined>(
+    undefined
+  );
+  const [selectedTag, setSelectedTag] = useState(tags[4]);
   const [activeList, setActiveList] = useState<string>("Personal");
   const [myLists, setMyLists] = useState<string[]>(initialMyLists);
-
+  const addTag = (tagName: string, tagColor: string, preference: number) => {
+    setTags({ ...tags, [tagName]: { tagColor, preference } });
+  };
+  const selectTag = (tagName: string) => {
+    setSelectedTag(tags.find((tag) => tag.tagName === tagName) || tags[4]);
+  };
   const selectTodo = (id: number) => {
     setSelectedTodo(todos[id]);
   };
@@ -203,8 +223,12 @@ const MyListsProvider = ({ children }: { children: ReactNode }) => {
   const value = {
     todos,
     selectedTodo,
+    selectedTag,
     myLists,
     activeList,
+    tags,
+    addTag,
+    selectTag,
     addMyLists,
     activateList,
     selectTodo,

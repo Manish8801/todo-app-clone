@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import TagsItem from "./TagsItem";
 import useSidebarContext from "../../sidebar_context/useSidebarContext";
 import dropdownEffect from "../../giveDropdownEffect";
-import useTagsContext from "../../../../contexts/useTagsContext";
 import { v4 as uuidv4 } from "uuid";
+import useMyListsContext from "../../../../contexts/useMyListsContext";
 
 const TagsList = () => {
-  const { tags } = useTagsContext();
+  const { tags } = useMyListsContext();
   const { isTagsOpen } = useSidebarContext();
   const tagsContainerRef = useRef<HTMLDivElement | null>(null);
 
