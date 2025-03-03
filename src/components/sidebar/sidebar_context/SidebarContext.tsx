@@ -12,7 +12,7 @@ type SidebarContextType = {
 const SidebarContext = createContext<SidebarContextType | null>(null);
 
 const SidebarProvider = ({ children }: { children: ReactNode }) => {
-  const [isSidebarJammed, setIsSidebarJammed] = useState<boolean>(true);
+  const [isSidebarJammed, setIsSidebarJammed] = useState<boolean>(false);
   const [isMyListsOpen, setIsMyListsOpen] = useState<boolean>(false);
   const [isTagsOpen, setIsTagsOpen] = useState<boolean>(false);
 

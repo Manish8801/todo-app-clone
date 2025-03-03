@@ -8,17 +8,17 @@ const Profile = () => {
       <div className="p-[22px] pr-1.5 ">
         <ProfileSettings />
 
-        <div className="show-and-hide-on-hover pl-14">
-          <div className="text-white font-[700] flex-start-start text-[15px] tracking-wide">
+        <div className="show-and-hide-on-hover group pl-14">
+          <div className="text-white font-[700] flex-start-between text-[15px] tracking-wide">
             Manish
             <JamSidebarButton />
           </div>
-          <div className="text-grey text-[15px] leading-1 font-[600]">
+          <div className="text-grey text-[14px] font-semibold leading-0.5">
             Free Plan
           </div>
         </div>
       </div>
-      <div className="show-and-hide-on-hover sidebar-button flex-center-start gap-3 sidebar-button w-full pl-6 py-2.5 text-grey">
+      <div className="show-and-hide-on-hover sidebar-button flex-center-start gap-3 sidebar-button w-full pl-6 py-2 text-grey">
         <div className="icon text-xl">
           <LuCrown />
         </div>

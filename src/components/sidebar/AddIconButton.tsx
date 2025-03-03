@@ -6,7 +6,7 @@ const AddIconButton = ({ onClick }: { onClick: () => void }) => {
   };
   return (
     <button
-      className="py-2.5 pr-3 text-2xl text-gray-400 hover:text-blue duration-150"
+      className="py-2.5 pr-2.5 text-xl text-gray-400 hover:text-blue duration-150"
       onClick={handleButtonClick}
     >
       <FiPlus />

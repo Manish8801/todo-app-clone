@@ -6,7 +6,9 @@
   --color-grey: #8e8e92;
   --color-light-grey: #a2a2a2;
   --color-dark-grey: #424242;
-      --font-default: "Inter-local", "Helvetica Neue", Helvetica, Arial, "Roboto", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-default: "Inter-local", "Helvetica Neue", Helvetica, Arial, "Roboto",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
 }
 button {
   outline: none;
@@ -21,6 +23,28 @@ button {
 .custom-scroll::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 6px;
+}
+
+.flex-start-start {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+.flex-start-center {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+
+.flex-start-end {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+.flex-start-between {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
 }
 .flex-center-start {
   display: flex;
@@ -37,24 +61,21 @@ button {
   align-items: center;
   justify-content: end;
 }
-.flex-start-start {
-  display: flex;
-  align-items: start;
-  justify-content: start;
-}
-
-.flex-start-center {
-  display: flex;
-  align-items: start;
-  justify-content: center;
-}
-
-.flex-start-end {
+.flex-center-between {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
 }
-
+.flex-center-around {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.flex-center-evenly {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
 .flex-end-start {
   display: flex;
   align-items: end;
@@ -66,24 +87,8 @@ button {
   align-items: end;
   justify-content: center;
 }
-
 .flex-end-end {
   display: flex;
   align-items: end;
   justify-content: end;
-}
-.flex-center-between{
-  display: flex;
-  align-items: center;
-  justify-content : space-between;
-}
-.flex-center-around{
-  display: flex;
-  align-items: center;
-  justify-content : space-around;
-}
-.flex-center-evenly{
-  display: flex;
-  align-items: center;
-  justify-content : space-evenly;
 }

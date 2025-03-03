@@ -31,18 +31,20 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`sidebar select-none h-full w-20  overflow-hidden ${
+      className={`sidebar select-none w-20 overflow-hidden ${
         isSidebarJammed
           ? "jammed w-60 backdrop-blur-sm bg-[rgba(0,0,0,.6)]"
           : "hover:w-60 hover:backdrop-blur-sm hover:bg-[rgba(0,0,0,.6)]"
-      } justify-between overflow-hidden flex flex-col`}
+      } overflow-hidden flex flex-col `}
       onMouseOver={handleSidebarHover}
       onMouseOut={handleSidebarOut}
       ref={sidebarRef}
     >
       <Profile />
-      <MiddleSectionContainer />
-      <Additional />
+      <div className="flex-1 w-60 show-and-hide-on-hover flex flex-col justify-between">
+        <MiddleSectionContainer />
+        <Additional />
+      </div>
     </div>
   );
 };

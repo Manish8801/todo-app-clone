@@ -8,8 +8,8 @@ const JamSidebarButton = () => {
   };
   return (
     <button
-      className={`rounded-full text-lg ${
-        isSidebarJammed ? "opacity-0 hover:opacity-100 text-blue" : ""
+      className={`rounded-full ${
+        isSidebarJammed ? "opacity-0 group-hover:opacity-100 text-blue" : ""
       } hover:bg-grey hover:text-blue text-grey duration-200  p-1.5`}
       onClick={handleButtonClick}
     >

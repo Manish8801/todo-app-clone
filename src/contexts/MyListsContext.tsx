@@ -1,13 +1,4 @@
 import { createContext, ReactNode, useState } from "react";
-type todoObject = {
-  id: number;
-  desc: string;
-  listName: string;
-  priority: string;
-  createdAt: Date;
-  dueAt: Date | "not set";
-};
-type todos = todoObject[];
 type MyListsContextType = {
   myLists: string[];
   activeList: string;
