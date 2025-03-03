@@ -1,0 +1,39 @@
+/* sidebar on hover  */
+.sidebar {
+  transition: width 150ms 300ms cubic-bezier(0, 0.8, 1, 1),
+    backdrop-filter 50ms 350ms, background-color 50ms 350ms;
+}
+.sidebar:not(.jammed):hover {
+  transition: width 150ms 300ms cubic-bezier(0, 0.8, 1, 1),
+    backdrop-filter 50ms 280ms, background-color 50ms 280ms;
+}
+
+/* settings icon when sidebar hovered */
+
+.sidebar-hovered .setting-icon-button:hover {
+  color: #0083ff;
+  transition: color 150ms 0 ease-out;
+}
+
+/* show elems on hover and while fixed sidebar */
+.sidebar:not(.jammed) .show-and-hide-on-hover {
+  transition: opacity 50ms 280ms ease-out;
+  opacity: 0;
+}
+
+.sidebar:not(.jammed):hover .show-and-hide-on-hover {
+  transition: opacity 50ms 280zms ease-out;
+  opacity: 100%;
+}
+.sidebar.jammed .show-and-hide-on-hover {
+  opacity: 100%;
+}
+
+/* sidebar button on hover */
+
+.sidebar-button:hover {
+  background-color: #424242;
+}
+.section-heading:hover {
+  background-color: #424242;
+}
