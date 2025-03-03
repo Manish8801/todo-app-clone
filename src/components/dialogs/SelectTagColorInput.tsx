@@ -36,31 +36,34 @@ const SelectTagColorInput = () => {
           className="flex flex-1  justify-between flex-col "
         >
           <div className="custom-scroll flex-1 flex-col overflow-y-auto px-0.5">
-            {tags.map(({ tagName, tagColor }) => (
-              <label
-                key={uuidv4()}
-                className={`flex-center-start cursor-pointer gap-4 p-[18.5px] text-white font-semibold bg-[${tagColor}]`}
-                htmlFor={tagName}
-              >
-                <input
-                  onChange={(e) => setValue(e.target.value)}
-                  type="radio"
-                  name="tagColor"
-                  id={tagName}
-                  value={tagName}
-                />
-                <div className="custom-radio-btn">
-                  <div
-                    className={`check-icon-btn ${
-                      value === tagName ? "selected" : ""
-                    }`}
-                  >
-                    <BsFillCheckSquareFill />
+            {tags.map(({ tagName, tagColor }) => {
+              return (
+                <label
+                  key={uuidv4()}
+                  className={`flex-center-start cursor-pointer gap-4 p-[18.5px] text-white font-semibold`}
+                  style={{ backgroundColor: tagColor }}
+                  htmlFor={tagName}
+                >
+                  <input
+                    onChange={(e) => setValue(e.target.value)}
+                    type="radio"
+                    name="tagColor"
+                    id={tagName}
+                    value={tagName}
+                  />
+                  <div className="custom-radio-btn">
+                    <div
+                      className={`check-icon-btn ${
+                        value === tagName ? "selected" : ""
+                      }`}
+                    >
+                      <BsFillCheckSquareFill />
+                    </div>
                   </div>
-                </div>
-                {tagName}
-              </label>
-            ))}
+                  {tagName}
+                </label>
+              );
+            })}
           </div>
           <div className="flex-center-center font-semibold">
             <button
@@ -71,7 +74,10 @@ const SelectTagColorInput = () => {
               Cancel
             </button>
             <div className="w-[1px] bg-white h-6"></div>
-            <button className="text-blue w-full py-5 hover:bg-[rgba(255,255,255,.2)] rounded-br-2xl duration-100" type="submit">
+            <button
+              className="text-blue w-full py-5 hover:bg-[rgba(255,255,255,.2)] rounded-br-2xl duration-100"
+              type="submit"
+            >
               Save
             </button>
           </div>

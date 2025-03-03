@@ -21,21 +21,15 @@ const TagsProvider = ({ children }: { children: ReactNode }) => {
     { tagName: "Priority", tagColor: "#F9D21F" },
   ]);
 
-  const selectTag = useCallback(
-    (tagName: string) => {
-      setTag(tagName);
-    },
-    [tags]
-  );
-  const selectColor = useCallback(
-    (tagColor: string) => {
-      setColor(tagColor);
-    },
-    [color]
-  );
-  const addTag = (tagName: string, tagColor: string) => {
+  const selectTag = useCallback((tagName: string) => {
+    setTag(tagName);
+  }, []);
+  const selectColor = useCallback((tagColor: string) => {
+    setColor(tagColor);
+  }, []);
+  const addTag = useCallback((tagName: string, tagColor: string) => {
     setTags([...tags, { tagName, tagColor }]);
-  };
+  }, []);
   const value = {
     tag,
     color,

@@ -6,7 +6,7 @@ type TagsItemProps = {
 }
 
 const TagsItem = ({ tagName, tagColor } : TagsItemProps) => {
-  const {tag, selectTag} = useTagsContext();
+  const { selectTag} = useTagsContext();
   const handleButtonClick = () => {
     selectTag(tagName);
   }
