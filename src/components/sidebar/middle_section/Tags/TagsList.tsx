@@ -3,9 +3,10 @@ import TagsItem from "./TagsItem";
 import useSidebarContext from "../../sidebar_context/useSidebarContext";
 import dropdownEffect from "../../giveDropdownEffect";
 import useTagsContext from "../../../../contexts/useTagsContext";
+import { v4 as uuidv4 } from "uuid";
 
 const TagsList = () => {
-  const {tags} = useTagsContext();
+  const { tags } = useTagsContext();
   const { isTagsOpen } = useSidebarContext();
   const tagsContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -18,9 +19,9 @@ const TagsList = () => {
   return (
     <div className="overflow-hidden" ref={tagsContainerRef}>
       <ul>
-        {tags.map(
-          ({tagName, tagColor}) => (<TagsItem tagName={tagName} tagColor={tagColor} />))
-        }
+        {tags.map(({ tagName, tagColor }) => (
+          <TagsItem key={uuidv4()} tagName={tagName} tagColor={tagColor} />
+        ))}
       </ul>
     </div>
   );

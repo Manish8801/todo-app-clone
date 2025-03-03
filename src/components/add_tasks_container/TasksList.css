@@ -1,0 +1,40 @@
+.task-desc {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: white;
+  flex: 1;
+}
+.list-options-button {
+  color: #8e8e92;
+  font-size: 20px;
+  transition: all 200ms 0ms linear;
+}
+.list-options-button:hover {
+  color: #0083ff;
+}
+.delete-button {
+  padding: 4px;
+  font-size: 13px;
+  background-color: #8e8e92;
+  border-radius: 50%;
+  transition: all 0ms 0ms;
+}
+.delete-button:active {
+  background-color: #0083ff;
+}
+.strike-through {
+  position: absolute;
+  top: 60%;
+  transition: all 300ms 0ms ease-out;
+  background-color: white;
+  color: white;
+  width: 0;
+  height: 1px;
+}
+.strike-through.shown {
+  transition: all 300ms 0ms ease-out;
+  background-color: #8e8e92;
+  width: 100%;
+}

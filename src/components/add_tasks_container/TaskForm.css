@@ -1,0 +1,16 @@
+.roll-up {
+  animation: roll-up 300ms 0s ease-out 1;
+}
+
+@keyframes roll-up {
+    50%{
+        transform : translateY(-100%);
+    }
+    50.01% {
+        transform : translateY(100%);
+    }
+
+    100% {
+        transform : translateY(0);
+    }
+}
