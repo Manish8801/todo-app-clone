@@ -1,0 +1,17 @@
+input[type="radio"] {
+  display: none;
+}
+.custom-radio-btn {
+  border: 1px solid white;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 4px;
+}
+.check-icon-btn {
+  opacity: 0;
+}
+
+.check-icon-btn.selected {
+  opacity: 100;
+  color: rgba(255, 255, 255, 0.7);
+}

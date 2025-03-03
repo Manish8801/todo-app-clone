@@ -31,7 +31,7 @@ const MiddleSectionContainer = () => {
 
   return (
     <div
-      className="custom-scroll flex-1 overflow-y-auto"
+      className="custom-scroll show-and-hide-on-hover flex-1 overflow-x-hidden overflow-y-auto"
       ref={ref}
       onScroll={handleScroll}
     >

@@ -13,7 +13,7 @@ const NavButton = ({
   count,
 }: NaveButtonProps) => {
   return (
-    <button className="sidebar-button flex-center-start gap-3 w-full py-2.5 font-semibold pl-6 text-grey">
+    <button className="show-and-hide-on-hover sidebar-button text-nowrap flex-center-start gap-3 w-full py-2.5 font-semibold pl-6 text-grey">
       <div className={iconSize}>{<IconComponent />}</div>
       <div className="text-[15px]">{buttonName}</div>
       {count && <Count/>}

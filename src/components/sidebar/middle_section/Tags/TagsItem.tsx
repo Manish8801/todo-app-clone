@@ -1,18 +1,24 @@
+import useTagsContext from "../../../../contexts/useTagsContext";
 
 type TagsItemProps = {
-  tag: string;
-  color: string;
+  tagName: string;
+  tagColor: string;
 }
 
-const TagsItem = ({ tag, color } : TagsItemProps) => {
+const TagsItem = ({ tagName, tagColor } : TagsItemProps) => {
+  const {tag, selectTag} = useTagsContext();
+  const handleButtonClick = () => {
+    selectTag(tagName);
+  }
   return (
     <li className="">
       <button
-        className={`sidebar-button flex-center-start w-full pl-6 py-2.5 hover:bg-third-black`}
+        className={`sidebar-button text-nowrap flex-center-start w-full pl-6 py-2.5 hover:bg-third-black`}
         style={{
-          color: color,
+          color: tagColor,
         }}
-      >{`#${tag}`}</button>
+        onClick={handleButtonClick}
+      >{`#${tagName}`}</button>
     </li>
   );
 };

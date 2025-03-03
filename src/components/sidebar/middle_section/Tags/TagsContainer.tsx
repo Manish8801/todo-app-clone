@@ -3,7 +3,7 @@ import TagsList from "./TagsList";
 
 const TagsContainer = () => {
   return (
-    <div>
+    <div className="show-and-hide-on-hover w-60">
       <TagsButtons />
       <TagsList/>
     </div>

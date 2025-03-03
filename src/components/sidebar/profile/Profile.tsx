@@ -1,6 +1,6 @@
 import { LuCrown } from "react-icons/lu";
 import ProfileSettings from "./ProfileSettings";
-import JamSidebarButton from "../../JamSidebarButton";
+import JamSidebarButton from "../JamSidebarButton";
 
 const Profile = () => {
   return (
@@ -9,11 +9,11 @@ const Profile = () => {
         <ProfileSettings />
 
         <div className="show-and-hide-on-hover group pl-14">
-          <div className="text-white font-[700] flex-start-between text-[15px] tracking-wide">
+          <div className="text-white text-nowrap font-[700] flex-start-between text-[15px] tracking-wide">
             Manish
             <JamSidebarButton />
           </div>
-          <div className="text-grey text-[14px] font-semibold leading-0.5">
+          <div className="text-grey text-nowrap text-[14px] font-semibold leading-0.5">
             Free Plan
           </div>
         </div>

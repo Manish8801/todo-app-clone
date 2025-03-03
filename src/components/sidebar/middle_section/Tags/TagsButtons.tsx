@@ -9,7 +9,7 @@ const TagsButtons = () => {
     <div className="group flex-center-between section-heading">
       <TagsDropdownButton />
       <SelectTagColor />
-      <AddIconButton onClick={toggleIsSelectTagColorInputOpen} />
+      <AddIconButton onClick={() => console.log("add Tag Clicked")} />
     </div>
   );
 }

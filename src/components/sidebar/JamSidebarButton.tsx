@@ -1,5 +1,5 @@
 import { BsPinAngle } from "react-icons/bs";
-import useSidebarContext from "./sidebar/sidebar_context/useSidebarContext";
+import useSidebarContext from "./sidebar_context/useSidebarContext";
 
 const JamSidebarButton = () => {
   const { isSidebarJammed, toggleIsSidebarJammed } = useSidebarContext();

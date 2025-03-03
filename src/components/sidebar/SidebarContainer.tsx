@@ -41,10 +41,8 @@ const Sidebar = () => {
       ref={sidebarRef}
     >
       <Profile />
-      <div className="flex-1 w-60 show-and-hide-on-hover flex flex-col justify-between">
-        <MiddleSectionContainer />
-        <Additional />
-      </div>
+      <MiddleSectionContainer />
+      <Additional />
     </div>
   );
 };
