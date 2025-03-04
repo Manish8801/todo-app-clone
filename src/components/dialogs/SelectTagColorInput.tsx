@@ -13,11 +13,10 @@ const SelectTagColorInput = () => {
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     selectTag(value);
-    if (selectedTodo) {
+    if (selectedTodo !== undefined) {
       handlePriorityChange(selectedTodo.id, value);
       setValue("");
     }
-
     toggleIsSelectTagColorInputOpen();
   };
   return (

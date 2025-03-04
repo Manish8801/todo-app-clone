@@ -15,12 +15,12 @@ type MyListsContextType = {
   myLists: string[];
   activeList: string;
   tags: TagType[];
-  selectedTag: TagType;
+  selectedTag: TagType | "";
   addTag: (tagName: string, tagColor: string, preference: number) => void;
   selectTag: (tagName: string) => void;
   addMyLists: (listName: string) => void;
   activateList: (listName: string) => void;
-  selectTodo: (id: number) => void;
+  selectTodo: (id: number | undefined) => void;
   handleTaskAdd: (
     description: string,
     priority: string,
@@ -43,6 +43,7 @@ enum ActionTypeType {
   COMPLETE_TASK = "COMPLETE_TASK",
   CHANGE_LIST_NAME = "CHANGE_LIST_NAME",
 }
+
 type AddAction = {
   type: ActionTypeType.ADD_TASK;
   payload: {
@@ -76,6 +77,7 @@ type ChangeListName = {
   type: ActionTypeType.CHANGE_LIST_NAME;
   payload: { id: number; listName: string };
 };
+
 type ActionType =
   | AddAction
   | DeleteAction
@@ -164,27 +166,30 @@ const MyListsProvider = ({ children }: { children: ReactNode }) => {
   const [selectedTodo, setSelectedTodo] = useState<TodoType | undefined>(
     undefined
   );
-  const [selectedTag, setSelectedTag] = useState(tags[4]);
+  const [selectedTag, setSelectedTag] = useState<TagType | "">("");
   const [activeList, setActiveList] = useState<string>("Personal");
   const [myLists, setMyLists] = useState<string[]>(initialMyLists);
   const addTag = (tagName: string, tagColor: string, preference: number) => {
     setTags({ ...tags, [tagName]: { tagColor, preference } });
   };
   const selectTag = (tagName: string) => {
-    setSelectedTag(tags.find((tag) => tag.tagName === tagName) || tags[4]);
+    setSelectedTag(tags.find((tag) => tag.tagName === tagName) || "");
   };
-  const selectTodo = (id: number) => {
-    setSelectedTodo(todos[id]);
+  const selectTodo = (id: number | undefined) => {
+    if (id !== undefined) {
+      setSelectedTodo(todos[id]);
+    }
   };
   const addMyLists = (listName: string) => {
     setMyLists([...myLists, listName]);
   };
   const activateList = (listName: string) => {
     setActiveList(listName);
+    selectTodo(undefined);
   };
   const handleTaskAdd = (
     description: string,
-    priority: string,
+    priority: string = tags[2].tagName,
     dueAt: Date | undefined = undefined
   ) => {
     dispatch({

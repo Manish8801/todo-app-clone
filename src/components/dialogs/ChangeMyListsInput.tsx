@@ -5,12 +5,18 @@ import useDialogsContext from "../../contexts/useDialogsContext";
 
 const ChangeMyListsInput = () => {
   const { toggleIsChangeListNameInputOpen } = useDialogsContext();
-  const { myLists, activeList, selectedTodo, handleListNameChange } =
-    useMyListsContext();
+  const {
+    myLists,
+    activeList,
+    selectedTodo,
+    selectTodo,
+    handleListNameChange,
+  } = useMyListsContext();
   const handleButtonClick = (listName: string) => {
     if (selectedTodo !== undefined) {
       handleListNameChange(selectedTodo.id, listName);
       toggleIsChangeListNameInputOpen();
+      selectTodo(undefined);
     }
   };
   return (

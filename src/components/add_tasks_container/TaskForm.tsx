@@ -6,31 +6,33 @@ import {
   useRef,
   useState,
 } from "react";
-
 import "./TaskForm.css";
 import { LuPlus } from "react-icons/lu";
 import { IoArrowUp } from "react-icons/io5";
-import { RiFileList2Line } from "react-icons/ri";
-import { LuBell } from "react-icons/lu";
-import { HiOutlineHashtag } from "react-icons/hi";
 import useMyListsContext from "../../contexts/useMyListsContext";
+import OptionsWhenAdding from "./OptionsWhenAdding";
 
-const submitForm = (elem: HTMLFormElement): void => {
+const submitForm = (e: HTMLFormElement): void => {
   const submitEvent = new Event("submit", {
     bubbles: true,
     cancelable: true,
   });
-  elem.dispatchEvent(submitEvent);
-  elem.focus();
+  e.dispatchEvent(submitEvent);
+  e.focus();
 };
 
 const TaskForm = () => {
   const [value, setValue] = useState<string>("");
-  const { handleTaskAdd } = useMyListsContext();
+  const [isTextareaFocused, setIsTextareaFocused] = useState<boolean>(false);
+  const { handleTaskAdd, selectedTag } = useMyListsContext();
   const [animateTextarea, setAnimateTextarea] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-
+  const focusOnTextarea = () => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
+  };
   useEffect(() => {
     if (animateTextarea) {
       if (textareaRef.current) {
@@ -48,7 +50,7 @@ const TaskForm = () => {
   }, [animateTextarea]);
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = "100%";
       textareaRef.current.style.height =
         textareaRef.current.scrollHeight + "px";
     }
@@ -61,7 +63,10 @@ const TaskForm = () => {
   const handleFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!!value) {
-      handleTaskAdd(value, "family");
+      handleTaskAdd(
+        value,
+        selectedTag === "" ? selectedTag : selectedTag.tagName
+      );
       setValue("");
       e.currentTarget.reset();
       setAnimateTextarea(true);
@@ -76,9 +81,17 @@ const TaskForm = () => {
       }
     } else return;
   };
+
   return (
-    <div className="relative bottom-0 rounded-b-2xl w-full bg-light-black flex overflow-hidden">
-      <div className="relative bg-light-black w-full p-4 rounded-b-2xl order-1 peer group">
+    <div className="relative bottom-0 rounded-b-2xl w-full bg-light-black flex">
+      <OptionsWhenAdding
+        isTextareaFocused={isTextareaFocused}
+        focusOnTextarea={focusOnTextarea}
+      />
+      <div
+        className="z-[1] bg-light-black w-full p-4 order-2 rounded-b-2xl peer group"
+        tabIndex={0}
+      >
         <form
           onSubmit={(e) => handleFormSubmit(e)}
           className="flex w-full h-fit bg-third-black border-[1px] border-grey hover:border-blue rounded-lg duration-200 ease-in overflow-hidden"
@@ -87,15 +100,16 @@ const TaskForm = () => {
           <textarea
             id="taskInput"
             name="taskInput"
-            className="flex-1 py-2 group-focus-within:pl-3 scroll-auto  caret-blue order-2 resize-none placeholder-grey text-white font-semibold outline-none"
+            className="flex-1 py-2 group-focus-within:pl-3 scroll-auto caret-blue order-2 resize-none placeholder-grey text-white font-semibold outline-none"
             placeholder="Add task"
             rows={1}
             value={value}
             onChange={(e) => handleInputChange(e)}
             onKeyDown={(e) => handleKeyDown(e)}
-            ref={textareaRef}
+            onFocus={() => setIsTextareaFocused(true)}
+            onBlur={() => setIsTextareaFocused(false)}
           ></textarea>
-          <div className="p-2 text-grey text-xl order-1 group-focus-within:hidden flex items-center justify-center">
+          <div className="p-2 text-grey text-xl group-focus-within:hidden flex items-center justify-center">
             <LuPlus />
           </div>
           <div
@@ -111,19 +125,6 @@ const TaskForm = () => {
             </button>
           </div>
         </form>
-      </div>
-      <div className="pt-2 px-[8%] order-2 absolute bg-light-black w-full bottom-0 left-0 text-xl text-grey flex-center-between peer-focus-within:-translate-y-[100%] delay-150 duration-300">
-        <button className="outline-none py-4 px-8 hover:cursor-pointer hover:text-blue duration-200">
-          <RiFileList2Line />
-        </button>
-        <div className="w-[1px] h-8 bg-grey"></div>
-        <button className="outline-none py-4 px-8 hover:cursor-pointer hover:text-blue duration-200">
-          <LuBell />
-        </button>
-        <div className="w-[1px] h-8 bg-grey"></div>
-        <button className="outline-none py-4 px-8 hover:cursor-pointer hover:text-blue duration-200">
-          <HiOutlineHashtag />
-        </button>
       </div>
     </div>
   );
